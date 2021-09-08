@@ -1,8 +1,14 @@
-import React from "react";
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { auth } from "../firebase";
 
 let Signup = () => {
   let history = useHistory();
+
+  let [email, setEmail] = useState("");
+  let [password, setPassword] = useState("");
+  let [confirmPassword, setConfirmPassword] = useState("");
+
   return (
     <>
       <div className="row">
@@ -15,6 +21,10 @@ let Signup = () => {
               </label>
               <input
                 type="email"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.currentTarget.value);
+                }}
                 className="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
@@ -26,6 +36,10 @@ let Signup = () => {
               </label>
               <input
                 type="password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.currentTarget.value);
+                }}
                 className="form-control"
                 id="exampleInputPassword1"
               />
@@ -37,13 +51,25 @@ let Signup = () => {
               </label>
               <input
                 type="password"
+                value={confirmPassword}
+                onChange={(e) => {
+                  setConfirmPassword(e.currentTarget.value);
+                }}
                 className="form-control"
                 id="exampleInputPassword2"
               />
             </div>
             <br />
-            <button type="submit" className="btn btn-primary">
-              SignUp
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                if (password === confirmPassword) {
+                  auth.createUserWithEmailAndPassword(email, password);
+                }
+              }}
+              class="btn btn-primary"
+            >
+              Sign Up
             </button>
             <br />
             <br />
@@ -51,7 +77,6 @@ let Signup = () => {
               onClick={() => {
                 history.push("/login");
               }}
-              type="submit"
               className="btn btn-primary"
             >
               Login
