@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Redirect, useHistory } from "react-router-dom";
 import { auth } from "../firebase";
 
 let Signup = () => {
@@ -8,9 +9,10 @@ let Signup = () => {
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
   let [confirmPassword, setConfirmPassword] = useState("");
-
+  let user = useSelector((state)=>state);
   return (
     <>
+    {user?<Redirect to ="/home" />:""}
       <div className="row">
         <div className="col-4 offset-4">
           <form className="mt-4">
