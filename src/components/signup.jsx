@@ -5,14 +5,13 @@ import { auth } from "../firebase";
 
 let Signup = () => {
   let history = useHistory();
-
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
   let [confirmPassword, setConfirmPassword] = useState("");
-  let user = useSelector((state)=>state);
+  let user = useSelector((state) => state);
   return (
     <>
-    {user?<Redirect to ="/home" />:""}
+      {user ? <Redirect to="/home" /> : ""}
       <div className="row">
         <div className="col-4 offset-4">
           <form className="mt-4">

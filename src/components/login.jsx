@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
+import { auth } from "../firebase";
 
 let Login = () => {
   let history = useHistory();
-  let user = useSelector((state)=>state);
+  let [email, setEmail] = useState("");
+  let [password, setPassword] = useState("");
+  let user = useSelector((state) => state);
   return (
     <>
-    {user?< Redirect to ="/home"/>:""}
+      {user ? <Redirect to="/home" /> : ""}
       <div className="row">
         <div className="col-4 offset-4">
           <form className="mt-4">
@@ -19,6 +22,10 @@ let Login = () => {
               <input
                 type="email"
                 className="form-control"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.currentTarget.value);
+                }}
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
               />
@@ -29,12 +36,23 @@ let Login = () => {
               </label>
               <input
                 type="password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.currentTarget.value);
+                }}
                 className="form-control"
                 id="exampleInputPassword1"
               />
             </div>
             <br />
-            <button type="submit" className="btn btn-primary">
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                auth.signInWithEmailAndPassword(email, password);
+              }}
+              type="submit"
+              className="btn btn-primary"
+            >
               Login
             </button>
             <br />
@@ -43,7 +61,7 @@ let Login = () => {
               onClick={() => {
                 history.push("/signup");
               }}
-              class="btn btn-primary"
+              className="btn btn-primary"
             >
               Sign Up
             </button>
