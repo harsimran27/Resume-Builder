@@ -8,6 +8,7 @@ import Login from "./components/login";
 import Navbar from "./components/navbar";
 import SignUp from "./components/signup";
 import { auth, firestore } from "./firebase";
+import Personal from "./components/personal";
 
 let App = () => {
 
@@ -44,6 +45,9 @@ let App = () => {
         <Switch>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/personal">
+            <Personal />
           </Route>
           <Route path="/signup">
             <SignUp />
