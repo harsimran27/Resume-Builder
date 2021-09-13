@@ -1,0 +1,11 @@
+.personal-container {
+  height: 90vh;
+  display: flex;
+}
+
+.personal-details{
+    width: 50%;
+    border: 1px solid;
+}
+
+
