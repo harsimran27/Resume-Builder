@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import "./css/preview.css";
+import "./css/form.css";
 
 let Preview = () => {
   let {

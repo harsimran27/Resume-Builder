@@ -9,6 +9,7 @@ import Navbar from "./components/navbar";
 import SignUp from "./components/signup";
 import { auth, firestore } from "./firebase";
 import Personal from "./components/personal";
+import Qualifications from "./components/qualifications";
 
 let App = () => {
 
@@ -43,6 +44,9 @@ let App = () => {
       <Router>
         <Navbar />
         <Switch>
+          <Route path="/qualifications">
+            <Qualifications />
+          </Route>
           <Route path="/login">
             <Login />
           </Route>

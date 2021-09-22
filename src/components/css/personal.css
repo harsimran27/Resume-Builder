@@ -1,11 +1,10 @@
-.personal-container {
+.personal-container,
+.qualification-container {
   height: 90vh;
   display: flex;
 }
 
-.personal-details{
-    width: 50%;
-    border: 1px solid;
+.personal-details,
+.qualification-details {
+  width: 50%;
 }
-
-
