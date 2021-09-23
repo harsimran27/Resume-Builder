@@ -8,3 +8,9 @@
 .qualification-details {
   width: 50%;
 }
+
+.qual-save {
+  position: fixed;
+  bottom: 8rem;
+  right: 40px;
+}

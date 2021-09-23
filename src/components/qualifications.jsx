@@ -1,12 +1,18 @@
 import Preview from "./preview";
 import "./css/form.css";
+import "./css/personal.css";
 import { useDispatch, useSelector } from "react-redux";
 import { detailsCreator } from "../redux/detailsAction";
+import {saveResume} from "../redux/saveActions";
 
 let Qualifications = () => {
-  let details = useSelector((state) => state.details);
+  
   let dispatch = useDispatch();
-  let { Degree, CGPA, Institution_Name, year } = details;
+  let { Degree, CGPA, Institution_Name, year, isPublic } = useSelector((state) => state.details);
+
+  let details = useSelector((state) => state.details);
+  let code = useSelector((state) => state.template);
+  let { uid } = useSelector((state) => state.user);
 
   return (
     <>
@@ -80,11 +86,16 @@ let Qualifications = () => {
               <input
                 class="form-check-input"
                 type="checkbox"
-                value=""
+                checked={isPublic}
                 id="flexCheckDefault"
+                onClick={(e) => {
+                  dispatch(
+                    detailsCreator({ isPublic: e.currentTarget.checked })
+                  );
+                }}
               />
               <label class="form-check-label" for="flexCheckDefault">
-                Default checkbox
+                Make Public
               </label>
             </div>
             <div class="col-12 mt-4">
@@ -96,6 +107,14 @@ let Qualifications = () => {
         </div>
         <Preview />
       </div>
+      <button
+        onClick={() => {
+          dispatch(saveResume(uid, details, code));
+        }}
+        className="btn btn-primary qual-save"
+      >
+        Save to Database
+      </button>
     </>
   );
 };

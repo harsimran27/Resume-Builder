@@ -20,7 +20,7 @@ export const saveCompletedCreator = (id) => {
     }
 }
 
-export const saveResume = (uid, code, details) => {
+export const saveResume = (uid,details,code) => {
     return (dispatch) => {
 
         dispatch(saveResumeCreator());
@@ -34,7 +34,7 @@ export const saveResume = (uid, code, details) => {
         }).then((doc) => {
             dispatch(saveCompletedCreator(doc.id));
         }).catch((err) => {
-            dispatch(saveErrCreator(doc.err));
+            dispatch(saveErrCreator(err));
         })
     }
 }
