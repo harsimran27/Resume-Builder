@@ -20,21 +20,23 @@ export const saveCompletedCreator = (id) => {
     }
 }
 
-export const saveResume = (uid,details,code) => {
+export const saveResume = (uid, details, code) => {
     return (dispatch) => {
 
         dispatch(saveResumeCreator());
 
-        firestore.collection("resume").add({
-            uid,
-            details,
-            code,
-        }).then((docRef) => {
-            return docRef.get();
-        }).then((doc) => {
-            dispatch(saveCompletedCreator(doc.id));
-        }).catch((err) => {
-            dispatch(saveErrCreator(err));
-        })
+        firestore
+            .collection("resume")
+            .add({
+                uid,
+                details,
+                code,
+            }).then((docRef) => {
+                return docRef.get();
+            }).then((doc) => {
+                dispatch(saveCompletedCreator(doc.id));
+            }).catch((err) => {
+                dispatch(saveErrCreator(err));
+            })
     }
 }

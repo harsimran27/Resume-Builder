@@ -3,13 +3,15 @@ import "./css/form.css";
 import "./css/personal.css";
 import { useDispatch, useSelector } from "react-redux";
 import { detailsCreator } from "../redux/detailsAction";
-import {saveResume} from "../redux/saveActions";
+import { saveResume } from "../redux/saveActions";
 
 let Qualifications = () => {
-  
   let dispatch = useDispatch();
-  let { Degree, CGPA, Institution_Name, year, isPublic } = useSelector((state) => state.details);
+  let { Degree, CGPA, Institution_Name, year, isPublic } = useSelector(
+    (state) => state.details
+  );
 
+  let { id } = useSelector((state) => state.saveState);
   let details = useSelector((state) => state.details);
   let code = useSelector((state) => state.template);
   let { uid } = useSelector((state) => state.user);
@@ -114,6 +116,14 @@ let Qualifications = () => {
         className="btn btn-primary qual-save"
       >
         Save to Database
+      </button>
+      <button
+        className="btn btn-primary qual-generate"
+        onClick={() => {
+          alert(`localhost:3000/publicpreview/${id}`);
+        }}
+      >
+        Generate Link
       </button>
     </>
   );

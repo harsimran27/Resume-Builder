@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/home";
 import { useDispatch } from "react-redux";
-import {userCreator} from "./redux/userAction"
+import { userCreator } from "./redux/userAction"
 
 import Login from "./components/login";
 import Navbar from "./components/navbar";
@@ -10,6 +10,7 @@ import SignUp from "./components/signup";
 import { auth, firestore } from "./firebase";
 import Personal from "./components/personal";
 import Qualifications from "./components/qualifications";
+import PublicPreview from "./components/publicPreview";
 
 let App = () => {
 
@@ -44,6 +45,9 @@ let App = () => {
       <Router>
         <Navbar />
         <Switch>
+          <Route path="/publicpreview/:rid">
+            <PublicPreview />
+          </Route>
           <Route path="/qualifications">
             <Qualifications />
           </Route>
